@@ -1,101 +1,189 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useRef, useState } from "react";
+
+const SmoothCanvasNavigation = () => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const targetOffset = useRef({ x: 0, y: 0 });
+  const currentOffset = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const animate = () => {
+      if (containerRef.current && isFullScreen) {
+        currentOffset.current.x +=
+          (targetOffset.current.x - currentOffset.current.x) * 0.6;
+        currentOffset.current.y +=
+          (targetOffset.current.y - currentOffset.current.y) * 1;
+
+        containerRef.current.style.transform = `translate(-${currentOffset.current.x}vw, -${currentOffset.current.y}vh)`;
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  }, [isFullScreen]);
+
+  // Mouse-controlled canvas movement
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (isFullScreen) {
+        const x = (event.clientX / window.innerWidth) * 100;
+        const y = (event.clientY / window.innerHeight) * 100;
+
+        targetOffset.current.x = (x / 100) * 200;
+        targetOffset.current.y = (y / 100) * 200;
+      }
+
+      // Update cursor position for custom cursor
+      setCursorPosition({ x: event.clientX, y: event.clientY });
+    };
+
+    if (isFullScreen) {
+      document.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [isFullScreen]);
+
+  // Toggle full-screen mode
+  const toggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+  };
+
+  const images = [
+    { src: "/images/logo_iste.png", text: "WELCOME TO PRODY2K25" },
+    { src: "/images/logo_prody.png", text: "Prody" },
+    { src: "/images/card.png", text: "Card 1" },
+    { src: "/images/card.png", text: "Card 2" },
+    { src: "/images/card.png", text: "Card 3" },
+    { src: "/images/card.png", text: "Card 4" },
+    { src: "/images/card.png", text: "Card 5" },
+    { src: "/images/card.png", text: "Card 6" },
+    { src: "/images/card.png", text: "Card 7" },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden", // Disable scrolling
+        cursor: isFullScreen ? "none" : "default",
+        position: "relative",
+      }}
+    >
+      {/* Full-screen toggle button */}
+      <button
+        onClick={toggleFullScreen}
+        style={{
+          position: "fixed",
+          top: "20px",
+          right: "20px",
+          zIndex: 1000,
+          padding: "10px 20px",
+          fontSize: "1rem",
+          fontWeight: "bold",
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        {isFullScreen ? "Grid View" : "Full Screen"}
+      </button>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Canvas container */}
+      <div
+        ref={containerRef}
+        style={{
+          width: isFullScreen ? "300vw" : "100vw",
+          height: isFullScreen ? "300vh" : "100vh",
+          display: "grid",
+          gridTemplateColumns: isFullScreen ? "repeat(3, 1fr)" : "repeat(3, 1fr)",
+          gridTemplateRows: isFullScreen ? "repeat(3, 1fr)" : "repeat(3, 1fr)",
+          gap: "10px",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: "transform 2s ease",
+        }}
+      >
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className="section"
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "2rem",
+              fontWeight: "bold",
+              color: "white",
+              transform: hoveredIndex === index ? "scale(1.1)" : "scale(1)",
+              transition: "transform 0.3s ease",
+            }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <img
+              src={image.src}
+              alt={`Image ${index + 1}`}
+              style={{
+                width: "60%",
+                height: "90%",
+                marginTop: "-40px",
+                objectFit: "contain",
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <p style={{ marginTop: "-30px", color: "black" }}>{image.text}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Custom cursor */}
+      {isFullScreen && (
+        <div
+          style={{
+            position: "fixed",
+            top: cursorPosition.y,
+            left: cursorPosition.x,
+            width: "20px",
+            height: "20px",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+            transform: "translate(-100%, -100%)",
+            zIndex: 1000,
+            transition: "transform 0.1s ease",
+          }}
+        ></div>
+      )}
+
+      {/* Parallax background */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "linear-gradient(45deg, #f0f5f5, #d0dee7)",
+          zIndex: -1,
+          transform: `translateY(${cursorPosition.y * 0.05}px)`,
+          transition: "transform 0.1s ease",
+        }}
+      ></div>
     </div>
   );
-}
+};
+
+export default SmoothCanvasNavigation;
