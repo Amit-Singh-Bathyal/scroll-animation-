@@ -1,66 +1,160 @@
 "use client";
-import { useEffect, useRef } from "react";
-import Event from "../componenets/Event";
 
-export default function Home() {
-  const lastX = useRef<number>(0);
-  const lastY = useRef<number>(0);
-  const lastTime = useRef<number>(0);
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+const images = [
+  { src: "/images/logo_iste.png", text: "WELCOME TO PRODY2K25" },
+  { src: "/images/logo_prody.png", text: "Prody" },
+  { src: "/images/card.png", text: "Card 1" },
+  { src: "/images/card.png", text: "Card 2" },
+  { src: "/images/card.png", text: "Card 3" },
+  { src: "/images/card.png", text: "Card 4" },
+  { src: "/images/card.png", text: "Card 5" },
+  { src: "/images/card.png", text: "Card 6" },
+  { src: "/images/card.png", text: "Card 7" },
+];
+
+const MouseScrollGrids = () => {
+  const [scrollX, setScrollX] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+
+  interface MouseMoveEvent extends MouseEvent {
+    clientX: number;
+    clientY: number;
+  }
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    
-    const handleMouseMove = (event: MouseEvent) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        const now = Date.now();
-        const timeDiff = now - lastTime.current;
+    const handleMouseMove = (event: MouseMoveEvent) => {
+      let x = event.clientX / window.innerWidth;
+      let y = event.clientY / window.innerHeight;
 
-        const x = event.clientX / window.innerWidth;
-        const y = event.clientY / window.innerHeight;
-        const scrollWidth = document.documentElement.scrollWidth - window.innerWidth;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-        const targetX = x * scrollWidth;
-        const targetY = y * scrollHeight;
-
-        const speedX = Math.abs(targetX - lastX.current) / timeDiff;
-        const speedY = Math.abs(targetY - lastY.current) / timeDiff;
-
-        const smoothingFactor = 0.01 + (speedX + speedY) * 0.005;
-
-        lastX.current = lastX.current + (targetX - lastX.current) * smoothingFactor;
-        lastY.current = lastY.current + (targetY - lastY.current) * smoothingFactor;
-
-        window.scrollTo({
-          left: lastX.current,
-          top: lastY.current,
-          behavior: "smooth",
-        });
-
-        lastTime.current = now;
-      }, 10); 
+      setScrollX(x);
+      setScrollY(y);
     };
 
     document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      clearTimeout(timeout);
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => document.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    const scrollWidth = document.documentElement.scrollWidth - window.innerWidth;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    window.scrollTo({
+      left: scrollX * scrollWidth,
+      top: scrollY * scrollHeight,
+      behavior: "instant",
+    });
+  }, [scrollX, scrollY]);
+
   return (
-    <div className="w-[200vw] h-[200vh] grid grid-cols-3 grid-rows-3 gap-4 p-4">
-      <Event />
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-yellow-400">Section 2</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-green-500">Section 3</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-blue-500">Section 4</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-purple-500">Section 5</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-pink-500">Section 6</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-orange-500">Section 7</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-teal-500">Section 8</div>
-      <div className="flex items-center justify-center text-white text-2xl font-bold bg-gray-500">Section 9</div>
-    </div>
+    <>
+      <div
+        className="container"
+        style={{
+          width: "300vw",
+          height: "300vh",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 100vw)",
+          gridTemplateRows: "repeat(3, 100vh)",
+        }}
+      >
+        {["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93", "#ff9f1c", "#d7263d", "#3a86ff", "#8338ec"].map(
+          (color, index) => (
+            <div
+              key={index}
+              className="section"
+              style={{
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "2rem",
+                fontWeight: "bold",
+                color: "white",
+                backgroundColor: color,
+                border: "2px solid white",
+                position: "relative",
+              }}
+            >
+              {/* Image at Center with Zoom Animation */}
+              {images[index] && (
+                <div className="image-container">
+                  <Image
+                    src={images[index].src}
+                    alt={images[index].text}
+                    width={202}
+                    height={202}
+                    className="zoom-image"
+                  />
+                </div>
+              )}
+            </div>
+          )
+        )}
+      </div>
+
+      {/* Help Button */}
+      <div className="help-button">?</div>
+
+      <style jsx>{`
+        .image-container {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 202px;
+          height: 202px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10; /* Ensure it's above other elements */
+          transition: transform 0.3s ease-in-out;
+        }
+
+        .image-container:hover {
+          transform: translate(-50%, -50%) scale(1.5); /* Zoom effect */
+        }
+
+
+
+        .help-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 40px;
+          height: 40px;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          font-weight: bold;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          overflow: hidden;
+          white-space: nowrap;
+          padding: 10px;
+        }
+
+        .help-button:hover {
+          width: 350px;
+          border-radius: 20px;
+          justify-content: flex-start;
+          padding-left: 15px;
+          font-size: 18px;
+        }
+
+        .help-button:hover::after {
+          content: "...Move mouse to explore -> <-";
+        }
+      `}</style>
+    </>
   );
-}
+};
+
+export default MouseScrollGrids;
