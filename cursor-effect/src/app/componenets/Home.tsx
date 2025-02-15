@@ -42,7 +42,7 @@ export default function Home() {
   }, [charIndex, isDeleting, textIndex, texts]);
 
   return (
-    <div className="relative flex items-center justify-center text-white text-2xl font-bold w-[100vw] h-[150vh]" style={{ gridRow: "span 2" }}>
+    <div className="relative flex  justify-center text-white text-2xl font-bold w-[100vw] h-[150vh]" style={{ gridRow: "span 2" }}>
       <div className="absolute top-56 left-60 flex flex-col items-start">
        
 

@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -21,7 +20,6 @@ const MouseScrollGrids = () => {
   const gridRef = useRef(null);
 
   useEffect(() => {
-
     const handleMouseMove = (event: MouseEvent) => {
       cursorX.current = event.clientX / window.innerWidth;
       cursorY.current = event.clientY / window.innerHeight;
@@ -33,18 +31,19 @@ const MouseScrollGrids = () => {
 
   useEffect(() => {
     const smoothScroll = () => {
-      targetX.current += (cursorX.current - targetX.current) * 0.1; 
+      targetX.current += (cursorX.current - targetX.current) * 0.1;
       targetY.current += (cursorY.current - targetY.current) * 0.1;
 
       const scrollWidth = document.documentElement.scrollWidth - window.innerWidth;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
 
       gsap.to(window, {
-        duration: 1.5, 
+        duration: 1.5,
         ease: "power2.out",
         scrollTo: {
           x: targetX.current * scrollWidth,
           y: targetY.current * scrollHeight,
+          autoKill: false, 
         },
       });
 
@@ -56,17 +55,33 @@ const MouseScrollGrids = () => {
 
   useEffect(() => {
 
-    gsap.fromTo(
+    const timeline = gsap.timeline();
+
+
+    timeline.fromTo(
       gridRef.current,
       { scale: 0.5, x: "-25%", y: "-25%" },
       {
-        scale: 1,           
-        x: "0%",    
-        y: "0%",      
-        duration: 2,         
-        delay: 1,            
-        ease: "power2.out",  
+        scale: 1,
+        x: "-27%",
+        y: "0%",
+        duration: 2,
+        delay: 1,
+        ease: "power2.out",
       }
+    );
+
+
+    timeline.to(
+      gridRef.current,
+      {
+        scale: 1,   
+        x: "0%",   
+        y: "0%",    
+        duration: 3,  
+        ease: "power2.inOut",  
+      },
+      "+=0.5"
     );
   }, []);
 
@@ -78,7 +93,7 @@ const MouseScrollGrids = () => {
         width: "200vw",
         height: "200vh",
         display: "grid",
-        gridTemplateColumns: "50vw 100vw 50vw", 
+        gridTemplateColumns: "50vw 100vw 50vw",
         gridTemplateRows: "75vh 75vh 50vh",
         gap: "5px",
       }}
@@ -90,7 +105,7 @@ const MouseScrollGrids = () => {
       <Gallery />
       <Messages />
       <Timeline />
-      <div className='w-[50vw] h-[50vh]'>example</div>
+      <div className="w-[50vw] h-[50vh]">example</div>
     </div>
   );
 };
