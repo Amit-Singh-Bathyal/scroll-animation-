@@ -38,7 +38,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
       transition={{ duration: 1 }}
     >
       <div
-        className="w-[153px] h-[160px] bg-black border-t-4 border-b-2 border-x-2 border-[#008080] rounded-xl"
+        className="w-[153px] h-[160px]  bg-black border-t-4 border-b-2 border-x-2 border-[#008080] rounded-xl"
         onClick={handleCardClick}
         style={{
           transformStyle: "preserve-3d",

@@ -53,8 +53,10 @@ export default function Home() {
       <div className="relative w-52 h-52 flex items-center justify-center rounded-full border-4 border-teal-400 p-2 text-white text-2xl font-bold shadow-lg text-center">
         Register now for exciting events !!
       </div>
+
+
       <div className="relative -translate-x-7 hover:bg-slate-500 w-52 h-52 flex items-center justify-center rounded-full border-4 border-teal-400 p-2 text-white text-3xl font-bold shadow-lg text-center">
-        Sign Up
+        <a href="/signup">Sign Up</a>
       </div>
         </div>
 
