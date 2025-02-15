@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Burger from "./home/components/hamburger";
+import Burger from "../home/components/hamburger";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MemberCardProps } from "@/lib/type";
@@ -32,7 +32,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
 
   return (
     <motion.div
-      className="h-[230px] mx-auto"
+      className="h-[500px] mx-auto"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1 }}
