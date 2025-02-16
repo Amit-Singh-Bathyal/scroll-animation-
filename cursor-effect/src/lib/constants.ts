@@ -61,6 +61,8 @@ export const membersData: MembersData = {
       { name: 'Gugli Thakur', role: 'Secretary', image: '/images/1.png', bitmoji: '/images/card.png' },
       { name: 'Gugli Thakur', role: 'Secretary', image: '/images/1.png', bitmoji: '/images/card.png' },
       { name: 'Gugli Thakur', role: 'Secretary', image: '/images/1.png', bitmoji: '/images/card.png' },
+      { name: 'Gugli Thakur', role: 'Secretary', image: '/images/1.png', bitmoji: '/images/card.png' },
+
     ],
     PRTeam: [
       { name: 'Gugli Thakur', role: 'Secretary', image: '/images/1.png', bitmoji: '/images/card.png' },

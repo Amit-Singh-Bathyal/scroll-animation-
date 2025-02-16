@@ -1,52 +1,73 @@
 "use client";
-import React from "react";
-import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaLock } from "react-icons/fa"; 
-import Burger from "../home/components/hamburger";
+import React, { useState } from "react";
+import Image from "next/image";
 
 const SignupPage: React.FC = () => {
-  return (
-    <div className="bg-black min-h-screen pb-8 flex justify-center items-center relative">
-      <Burger />
+  // State to store input values
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-    
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 text-center text-white font-normal text-[18px]">
-        WELCOME TO PRODY'25
+  // Handle input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = () => {
+    console.log("Form Data:", formData); // Replace this with backend API call later
+  };
+
+  return (
+    <div className="bg-black min-h-screen flex flex-col pt-5 items-center sm:pt-32 relative">
+      
+      {/* Sign Up & Logo (Outside the Border) */}
+      <div className="flex items-center justify-between w-[90%] max-w-[400px] sm:mb-12 mb-6">
+        <h2 className="text-white text-4xl sm:text-4xl font-black">Sign Up</h2>
+        <Image src="/images/logo.png" alt="Logo" width={60} height={50} />
       </div>
 
-      <div
-        className="p-4 mx-2 mt-9 w-[400px] rounded-3xl opacity h-[650px] flex flex-col justify-center items-center transition-all duration-300 ease-in-out transform"
-        style={{
-          background:
-            "radial-gradient(ellipse 118% 55% at 50% 25%, rgba(77, 192, 231, 0) 41%, rgba(51, 159, 178, 0.7) 100%)",
-        }}
-      >
-        {["name", "email", "branch", "phone number", "password"].map(
-          (field, index) => (
-            <div key={index} className="mb-9 relative w-[350px] h-[60px] z-20">
-             
-              <div className="absolute mt-2 left-2 top-1/2 transform -translate-y-1/2 w-12 h-12 border-[1px] border-[#FFFFFF] bg-gradient-to-r from-[rgba(255,255,255,0.5)] to-[rgba(255,255,255,0)] rounded-full opacity-45 z-30 flex items-center justify-center">
-                {field === "name" && <FaUser className="text-white text-2xl" />}
-                {field === "email" && <FaEnvelope className="text-white text-2xl" />}
-                {field === "branch" && <FaBuilding className="text-white text-2xl" />}
-                {field === "phone number" && <FaPhone className="text-white text-2xl" />}
-                {field === "password" && <FaLock className="text-white text-2xl" />}
-              </div>
-
+      {/* Signup Form */}
+      <div className="p-4 mx-2 sm:border-[2px] border-[#1B7774] w-[90%] max-w-[400px] bg-black rounded-3xl h-auto flex flex-col justify-center items-center">
+        
+        {["name", "email", "password"].map((field, index) => (
+          <div key={index} className="w-full max-w-[350px] mb-11 sm:mb-9">
+            <label
+              htmlFor={field}
+              className="block text-[#B0B0B0] font-semibold sm:font-bold text-lg sm:text-xl mb-2"
+            >
+              {field.charAt(0).toUpperCase() + field.slice(1)}
+            </label>
+            <div className="relative h-[60px] sm:h-[70px]">
               <input
                 type={field === "password" ? "password" : "text"}
                 id={field}
                 name={field}
-                className="mt-2 p-2 pl-16 border-[1px] border-[#64deee] bg-gradient-to-r from-[#4FAEBB] to-[#0F293B] text-white rounded-[30px] w-full h-full opacity-50 placeholder-white z-20"
-                placeholder={field}
+                value={formData[field as keyof typeof formData]} // Bind state
+                onChange={handleChange} // Capture input
+                className="mt-2 p-2 pl-4 sm:pl-6 border-b-[1px] border-[3px] border-[#1B7774] bg-[#171717] text-white rounded-2xl w-full h-full placeholder-white"
+                placeholder={`Enter your ${field}`}
               />
             </div>
-          )
-        )}
+          </div>
+        ))}
 
-        <div className="mt-12 w-[280px] h-[44px] border-[2.5px] border-[#5BC5BF] rounded-[30px]">
-          <button className="w-full h-full text-white py-2 bg-gradient-to-r from-[rgba(32,194,172,1)] to-[rgba(65,164,206,0.11)] rounded-full shadow-[0px_10px_30px_rgba(27,12,87,0.5)]">
-            Sign Up
-          </button>
+        {/* Sign Up Button */}
+        <button
+          onClick={handleSubmit} // Trigger data collection
+          className="mt-6 px-5 border-[3px] border-[#1B7774] bg-[#171717] text-white rounded-2xl h-16 w-44"
+        >
+          Sign Up
+        </button>
+
+        {/* Already have an account? */}
+        <div className="mt-6 text-white text-base">
+          Already have an account?{" "}
+          <a href="/login" className="text-[#1B7774] font-semibold hover:underline">
+            Log in
+          </a>
         </div>
       </div>
     </div>

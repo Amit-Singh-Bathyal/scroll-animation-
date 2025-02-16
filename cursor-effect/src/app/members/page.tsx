@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Burger from "../home/components/hamburger";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MemberCardProps } from "@/lib/type";
@@ -38,7 +37,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
       transition={{ duration: 1 }}
     >
       <div
-        className="w-[153px] h-[160px]  bg-black border-t-4 border-b-2 border-x-2 border-[#008080] rounded-xl"
+        className="w-[400px] h-[400px] bg-black border-t-4 border-b-2 border-x-2 border-[#008080] rounded-xl"
         onClick={handleCardClick}
         style={{
           transformStyle: "preserve-3d",
@@ -46,23 +45,21 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
           transition: "transform 0.6s",
         }}
       >
-
         <motion.div
-          className="w-full h-full absolute inset-0 flex flex-col items-center justify-center backface-hidden"
+          className="w-full h-full absolute inset-0 flex flex-col items-center justify-center"
           style={{ backfaceVisibility: "hidden" }}
         >
           <Image
             width={400}
             height={400}
-            className="w-[100px] h-[153px] mx-auto rounded-md"
+            className="w-[320px] h-[300px] mx-auto rounded-md"
             src={member.bitmoji}
             alt={`${member.name}'s bitmoji`}
           />
         </motion.div>
 
-
         <motion.div
-          className="w-full h-full absolute inset-0 flex flex-col items-center justify-center backface-hidden"
+          className="w-full h-full absolute inset-0 flex flex-col items-center justify-center"
           style={{
             transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
@@ -94,10 +91,8 @@ const Members: React.FC = () => {
   };
 
   return (
-    <div className="bg-black h-screen bg-repeat-y">
-      <Burger />
-
-      <div className="flex pt-24 pl-4 justify-start items-center space-x-6 overflow-x-auto whitespace-nowrap">
+    <div className="bg-black min-h-full bg-no-repeat ">
+      <div className="flex pt-12 justify-center items-center space-x-6 overflow-x-auto whitespace-nowrap">
         {teamSections.map((section) => (
           <motion.div
             key={section.id}
@@ -106,10 +101,10 @@ const Members: React.FC = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center">
               <span className="text-xl text-black">{getIcon(section.id)}</span>
             </div>
-            <div className="text-white text-center pt-1">{section.label}</div>
+            <div className="text-white text-center pt-4">{section.label}</div>
           </motion.div>
         ))}
       </div>
@@ -119,7 +114,7 @@ const Members: React.FC = () => {
           <div className="flex flex-row justify-center text-[24px] pt-0 pb-8 items-center text-white text-opacity-80">
             {section.label}
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-centre">
             {section.data.map((member, index) => (
               <MemberCard key={index} member={member} />
             ))}
