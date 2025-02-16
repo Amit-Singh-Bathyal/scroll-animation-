@@ -4,9 +4,9 @@ import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Home from "./componenets/Home";
 import Members from "./componenets/Members";
-import Register from "./componenets/Register";
+import Register from "./componenets/Profile";
 import Events from "./componenets/Events";
-import Gallery from "./componenets/Gallery";
+import Gallery from "./componenets/Workshop"
 import Messages from "./componenets/Messages";
 import Timeline from "./componenets/Timeline";
 

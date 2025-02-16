@@ -3,17 +3,18 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const images = [
   "/images/1.jpeg",
   "/images/workshop.png",
 ];
 
-const Gallery = () => {
+const Workshop = () => {
   const [hovered, setHovered] = useState(false);
   const [index, setIndex] = useState(0);
 
-  // Auto-change image every 2 seconds
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -23,6 +24,7 @@ const Gallery = () => {
   }, []);
 
   return (
+    <Link href="/workshop" passHref>
     <div className="w-[50vw] h-[75vh] flex flex-col items-center justify-center gap-4">
       {/* Image Card */}
       <motion.div
@@ -72,7 +74,8 @@ const Gallery = () => {
         Improve your skills by participating in exciting workshop!!
       </div>
     </div>
+    </Link>
   );
 };
 
-export default Gallery;
+export default Workshop;

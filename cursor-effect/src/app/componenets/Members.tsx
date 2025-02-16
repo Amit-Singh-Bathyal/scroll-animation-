@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Members = () => {
   const [hovered, setHovered] = useState(false);
 
   return (
+    <Link href="/members" passHref>
     <div className="w-[50vw] h-[75vh] flex flex-col items-center justify-center gap-4">
   {/* Image Card */}
   <motion.div
@@ -48,6 +50,7 @@ const Members = () => {
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius iure accusamus at aliquid a aspernatur!
   </div>
 </div>
+</Link>
   )
 }
 export default Members;

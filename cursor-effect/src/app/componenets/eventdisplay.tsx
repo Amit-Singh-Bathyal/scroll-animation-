@@ -59,28 +59,28 @@ const Display = () => {
       <div
         className="flex transition-transform duration-500"
         style={{
-          transform: `translateX(-${(currentEventIndex % events.length) * 50}%)`, // Adjusted to 50% for 2 cards at once
+          transform: `translateX(-${(currentEventIndex % events.length) * 50}%)`, 
         }}
       >
         {events.map((event, index) => (
-          <div key={index} className="relative w-[50vw] flex-shrink-0">
+          <div key={index} className="relative w-[45vw] flex items-center flex-shrink-0">
             <Image
               src="Frame.svg"
               alt="frame"
               width={282}
               height={200}
-              className="w-[570px]" // Adjust width if needed
+              className="w-[400px]" 
             />
-            <div className="absolute top-2 left-2 z-1 flex items-start space-x-2">
+            <div className="absolute top-2 left-2 z-1 flex items-start space-x-1">
               <div className="bg-[#D25E5E] ml-7 mt-4 w-[0.2vw] overflow-hidden h-[10vw]"></div>
               <div>
-                <div className="font-bold text-lg mt-2.5 ml-2 text-white">{event.name} </div>
-                <div className="text-base ml-2 text-white">{event.date}</div>
+                <div className="font-bold text-2xl mt-2.5 ml-2 text-white">{event.name} </div>
+                <div className="text-lg ml-2 text-white">{event.date}</div>
               </div>
             </div>
-            <div className="absolute top-20 w-[15vw] h-[0.25vh] bg-[#474747] ml-6"></div>
+            <div className="absolute top-20 w-[15vw] h-[0.25vh] bg-[#474747] ml-12"></div>
             <div className="absolute top-24 flex justify-between items-center w-full px-4">
-              <div className="text-1xl w-[30vw] ml-9 text-white">
+              <div className="text-lg w-[20vw] ml-9 text-white text-wrap">
                 {event.description}
               </div>
             </div>
