@@ -29,6 +29,10 @@ const cards = [
 
 const WorkshopSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedWorkshop, setSelectedWorkshop] = useState(cards[0].title);
+  const [name, setName] = useState("");
+  const [rollNo, setRollNo] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,6 +51,21 @@ const WorkshopSlider = () => {
     onSwipedRight: () => setCurrentIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length),
     trackMouse: true,
   });
+
+  const handleRegisterClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle registration logic here
+    console.log("Registered for:", selectedWorkshop, "Name:", name, "Roll No:", rollNo);
+    setIsModalOpen(false); // Close modal after submission
+  };
 
   return (
     <div
@@ -113,10 +132,77 @@ const WorkshopSlider = () => {
           style={{
             background: "linear-gradient(0deg, #8BDBD8, #70C6F6)",
           }}
+          onClick={handleRegisterClick}
         >
           Register Now
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+          <div className="bg-[#121212] p-6 rounded-lg w-[90%] max-w-md">
+            <h2 className="text-white text-2xl font-bold mb-4">Register for Workshop</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Select Workshop
+                </label>
+                <select
+                  className="w-full p-2 rounded bg-[#2A2E2E] text-white"
+                  value={selectedWorkshop}
+                  onChange={(e) => setSelectedWorkshop(e.target.value)}
+                >
+                  {cards.map((card) => (
+                    <option key={card.id} value={card.title}>
+                      {card.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 rounded bg-[#2A2E2E] text-white"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Roll No.
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 rounded bg-[#2A2E2E] text-white"
+                  placeholder="Enter your roll number"
+                  value={rollNo}
+                  onChange={(e) => setRollNo(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
+                  onClick={handleModalClose}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-[#70C6F6] text-black px-4 py-2 rounded"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
