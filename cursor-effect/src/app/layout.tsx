@@ -25,9 +25,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cover bg-no-repeat bg-center relative min-h-screen`}
+        style={{
+          backgroundImage: "url('glassbg.webp')",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+        }}
       >
-        {children}
+        <div
+          className="min-h-screen w-full bg-white/10 backdrop-blur-lg shadow-2xl"
+          style={{
+            boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+
+          }}
+        >
+          {children}
+        </div>
       </body>
     </html>
   );

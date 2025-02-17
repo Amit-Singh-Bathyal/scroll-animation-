@@ -62,14 +62,14 @@ const WorkshopSlider = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle registration logic here
+    
     console.log("Registered for:", selectedWorkshop, "Name:", name, "Roll No:", rollNo);
-    setIsModalOpen(false); // Close modal after submission
+    setIsModalOpen(false); 
   };
 
   return (
     <div
-      className="flex flex-col items-center min-h-screen bg-cover bg-center bg-no-repeat bg-black"
+      className="flex flex-col items-center min-h-screen bg-cover bg-center bg-no-repeat "
       {...handlers}
     >
       {/* Card Slider */}
@@ -83,12 +83,12 @@ const WorkshopSlider = () => {
           {cards.map((card) => (
             <div
               key={card.id}
-              className="flex-shrink-0 w-[351px] h-[438px] lg:w-[500px] lg:h-[600px] p-[2px] rounded-[22px] "
+              className="flex-shrink-0 w-[351px] h-[438px] lg:w-[500px] lg:h-[600px] p-[2px] rounded-[22px] border-[3px] border-sky-300 "
               style={{
                 background: "linear-gradient(45deg, #2A2E2E, #466262)",
               }}
             >
-              <div className="flex flex-col items-center bg-[#121212] opacity-80 rounded-[22px] w-full h-full p-4">
+              <div className="flex flex-col items-center rounded-[22px] w-full h-full p-4 ">
                 <Image
                   src={card.img}
                   alt={card.title}
@@ -118,7 +118,7 @@ const WorkshopSlider = () => {
         ))}
       </div>
 
-      {/* Title, Date, and Button */}
+  
       <div className="mt-10 text-center">
         <div className="text-white font-bold text-2xl lg:text-4xl">
           {cards[currentIndex].title}
@@ -138,7 +138,7 @@ const WorkshopSlider = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="fixed inset-0 flex items-center justify-center  bg-opacity-50 backdrop-blur-sm z-50">
           <div className="bg-[#121212] p-6 rounded-lg w-[90%] max-w-md">
             <h2 className="text-white text-2xl font-bold mb-4">Register for Workshop</h2>
             <form onSubmit={handleSubmit}>
@@ -147,7 +147,7 @@ const WorkshopSlider = () => {
                   Select Workshop
                 </label>
                 <select
-                  className="w-full p-2 rounded bg-[#2A2E2E] text-white"
+                  className="w-full p-2 rounded  text-white"
                   value={selectedWorkshop}
                   onChange={(e) => setSelectedWorkshop(e.target.value)}
                 >
@@ -164,7 +164,7 @@ const WorkshopSlider = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full p-2 rounded bg-[#2A2E2E] text-white"
+                  className="w-full p-2 rounded text-white"
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -177,7 +177,7 @@ const WorkshopSlider = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full p-2 rounded bg-[#2A2E2E] text-white"
+                  className="w-full p-2 rounded  text-white"
                   placeholder="Enter your roll number"
                   value={rollNo}
                   onChange={(e) => setRollNo(e.target.value)}

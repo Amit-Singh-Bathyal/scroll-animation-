@@ -37,7 +37,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
       transition={{ duration: 1 }}
     >
       <div
-        className="w-[400px] h-[400px] bg-black border-t-4 border-b-2 border-x-2 border-[#008080] rounded-xl"
+        className="w-[400px] h-[400px] border-t-4 border-b-2 border-x-2 border-[#008080] rounded-xl"
         onClick={handleCardClick}
         style={{
           transformStyle: "preserve-3d",
@@ -91,7 +91,7 @@ const Members: React.FC = () => {
   };
 
   return (
-    <div className="bg-black min-h-full bg-no-repeat ">
+    <div className=" min-h-full bg-no-repeat ">
       <div className="flex pt-12 justify-center items-center space-x-6 overflow-x-auto whitespace-nowrap">
         {teamSections.map((section) => (
           <motion.div

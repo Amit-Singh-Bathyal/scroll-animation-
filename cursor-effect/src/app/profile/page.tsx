@@ -21,7 +21,7 @@ const Profile = () => {
 
 
   return (
-    <div className="flex flex-col bg-black items-center min-h-screen">
+    <div className="flex flex-col items-center min-h-screen">
       {/* User Info Section */}
       <div className="mt-12 participant_info font-inter flex flex-col text-white items-center justify-center">
         <div className="relative flex items-center justify-center w-36 h-36 rounded-full bg-gradient-to-b from-[#1B7774] to-[#0E1F25]">
