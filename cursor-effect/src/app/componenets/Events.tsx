@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const events = [
-  { id: 1, title: "Event 1", image: "/images/glider.png" },
-  { id: 2, title: "Event 2", image: "/images/image.png" },
+  { id: 1, title: "Event 1", image: "/images/event1.jpeg" },
+  { id: 2, title: "Event 2", image: "/images/event2.jpeg" },
   { id: 3, title: "Event 3", image: "/images/1.jpeg" },
 ];
 
@@ -23,9 +23,9 @@ export default function Events() {
   const prevSlide = () => setIndex((prev) => (prev - 1 + events.length) % events.length);
 
   return (
-    <div className="w-[50vw] h-[75vh flex flex-col items-center justify-center space-y-4 p-4">
+    <div className="h-[60vw] mt-0 flex flex-col items-center justify-center space-y-4 p-4">
       {/* Carousel Window */}
-      <div className="relative w-[30vw] h-[60vh] overflow-hidden rounded-2xl shadow-lg border-2 border-[#00a3a3] flex items-center justify-center">
+      <div className="relative w-[25vw] h-[60vh] overflow-hidden rounded-2xl shadow-lg flex items-center justify-center">
         <AnimatePresence>
           <motion.div
             key={events[index].id}
@@ -38,8 +38,8 @@ export default function Events() {
             <Image
               src={events[index].image}
               alt={events[index].title}
-              width={640} // Set width manually
-              height={480} // Set height manually
+              width={640}
+              height={480} 
               className="rounded-2xl object-cover w-full h-full"
             />
           </motion.div>
@@ -57,12 +57,12 @@ export default function Events() {
       </div>
 
       {/* Register Button */}
-      <button className="mt-4 px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg shadow-lg hover:bg-yellow-400">
+      <button className="mt-4 px-6 py-3  text-white border-2  font-bold rounded-lg shadow-lg hover:bg-transparent">
         Register Now
       </button>
 
       {/* Text Section */}
-      <div className="mt-4 text-white text-center w-[40vw]">
+      <div className="mt-4 text-white text-left px-4 w-[30vw] text-xl">
         <p>
           Join us for an exciting series of events! Participate, learn, and showcase your skills. Register now and be a
           part of something amazing.

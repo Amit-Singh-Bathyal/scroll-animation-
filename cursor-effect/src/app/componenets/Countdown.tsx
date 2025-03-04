@@ -26,8 +26,8 @@ export default function Countdown() {
   }, [count, isPaused]);
 
   return (
-    <div className="flex items-center justify-center h-[20vh] bg-transparent m-2">
-      <div className="hover:scale-105 relative w-48 h-48 flex items-center justify-center rounded-full border-8 border-teal-400 text-white text-5xl font-bold shadow-lg">
+    <div className="flex items-center justify-center h-[20vh] ml-8 bg-transparent m-2">
+      <div className="hover:scale-105 hover:cursor-pointer relative w-36 h-36 flex items-center justify-center rounded-full border-4 border-teal-400 text-white text-5xl font-bold shadow-lg">
         {count}
       </div>
     </div>

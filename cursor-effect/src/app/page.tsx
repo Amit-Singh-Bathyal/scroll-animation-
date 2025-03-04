@@ -70,7 +70,7 @@ const MouseScrollGrids = () => {
       { scale: 0.5, x: "-25%", y: "-25%" },
       {
         scale: 1,
-        x: "-27%",
+        x: "-25%",
         y: "0%",
         duration: 2,
         delay: 1,
@@ -99,8 +99,8 @@ const MouseScrollGrids = () => {
         width: "200vw",
         height: "200vh",
         display: "grid",
-        gridTemplateColumns: "50vw 100vw 50vw",
-        gridTemplateRows: "75vh 75vh 50vh",
+        gridTemplateColumns: "50vw  100vw 50vw ",
+        gridTemplateRows: "75vh  75vh  75vh",
         gap: "5px",
       }}
     >

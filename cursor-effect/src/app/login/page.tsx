@@ -25,7 +25,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col pt-5 items-center lg:pt-12 relative">
+    <div className="min-h-screen flex flex-col pt-5 mb-12 items-center lg:pt-12 relative">
       <Navbar/>
       <div className="flex items-center justify-center w-[90%] max-w-[400px] sm:mb-12 mt-16 mb-6">
         <h2 className="text-white text-4xl sm:text-4xl font-black">Login</h2>

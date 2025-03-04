@@ -22,13 +22,13 @@ const Messages = () => {
   }, []);
 
   return (
-    <div className="relative w-[40vw] h-[30vh] flex items-center justify-center">
+    <div className="relative w-[40vw] h-[30vh] mt-20 flex items-center justify-center">
       <AnimatePresence mode="popLayout">
         {quotes.map((quote, i) =>
           i === index ? (
             <motion.div
               key={quote.text}
-              className="absolute w-[35vw] h-[20vh] flex flex-col items-center justify-center bg-white/20 backdrop-blur-md border border-white/30 text-white text-lg font-semibold p-6 rounded-xl shadow-xl text-center"
+              className="absolute w-[35vw] h-[20vh] flex flex-col items-center justify-center  backdrop-blur-md border border-white/30 text-white text-lg font-semibold p-8 rounded-xl shadow-xl text-center"
               initial={{ y: 50, opacity: 0, scale: 0.8 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: -50, opacity: 0, scale: 0.9 }}

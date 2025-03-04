@@ -55,7 +55,8 @@ const Display = () => {
   });
 
   return (
-    <div className="relative w-[80vw] overflow-hidden" {...handlers}>
+    <div className="mt-12">
+    <div className="relative w-[90vw]  overflow-hidden" {...handlers}>
       <div
         className="flex transition-transform duration-500"
         style={{
@@ -63,7 +64,7 @@ const Display = () => {
         }}
       >
         {events.map((event, index) => (
-          <div key={index} className="relative w-[45vw] flex items-center flex-shrink-0">
+          <div key={index} className="relative w-[40vw] flex items-center flex-shrink-0">
             <Image
               src="Frame.svg"
               alt="frame"
@@ -87,6 +88,7 @@ const Display = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };
