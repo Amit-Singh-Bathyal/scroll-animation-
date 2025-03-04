@@ -1,11 +1,14 @@
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import Link from "next/link";
 
 const Register: React.FC = () => {
+  const navigateToProfile = () => {
+    window.location.href = "/profile"; 
+  };
   return (
-    <Link href="/profile" passHref>
-    <div className="w-[50vw] h-[75vh] flex flex-col items-center justify-center space-y-6 p-4">
+    
+    <div className="w-[50vw] h-[75vh] flex flex-col items-center justify-center space-y-6 p-4"
+    onClick={navigateToProfile} >
       
       <div className="w-[40vw] h-[50vh] flex items-center justify-center">
         <DotLottieReact
@@ -20,7 +23,7 @@ const Register: React.FC = () => {
         Explore Your Profile
       </button>
     </div>
-    </Link>
+  
   );
 };
 

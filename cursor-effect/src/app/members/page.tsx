@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MemberCardProps } from "@/lib/type";
 import { teamSections } from "@/lib/constants";
+import Navbar from "../componenets/Navbar";
+import Footer from "../componenets/Footer";
 
 const getIcon = (sectionId: string) => {
   switch (sectionId) {
@@ -91,8 +93,9 @@ const Members: React.FC = () => {
   };
 
   return (
-    <div className=" min-h-full bg-no-repeat ">
-      <div className="flex pt-12 justify-center items-center space-x-6 overflow-x-auto whitespace-nowrap">
+    <div>
+      <Navbar/>
+      <div className="flex pt-12 mt-20 justify-center items-center space-x-6 overflow-x-auto whitespace-nowrap">
         {teamSections.map((section) => (
           <motion.div
             key={section.id}
@@ -121,6 +124,7 @@ const Members: React.FC = () => {
           </div>
         </div>
       ))}
+      <Footer/>
     </div>
   );
 };

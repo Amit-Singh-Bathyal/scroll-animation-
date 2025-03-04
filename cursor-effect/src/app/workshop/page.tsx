@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
+import Navbar from '../componenets/Navbar';
+import Footer from '../componenets/Footer';
 
 const cards = [
   {
@@ -72,8 +74,8 @@ const WorkshopSlider = () => {
       className="flex flex-col items-center min-h-screen bg-cover bg-center bg-no-repeat "
       {...handlers}
     >
-      {/* Card Slider */}
-      <div className="mt-10 relative w-[351px] h-[438px] lg:w-[500px] lg:h-[600px] overflow-hidden rounded-[22px] transition-transform duration-300 ease-in-out transform hover:scale-105">
+      <Navbar/>
+      <div className="mt-32 relative w-[351px] h-[438px] lg:w-[500px] lg:h-[600px] overflow-hidden rounded-[22px] transition-transform duration-300 ease-in-out transform hover:scale-105">
         <div
           className="flex transition-transform duration-500"
           style={{
@@ -128,7 +130,7 @@ const WorkshopSlider = () => {
         </div>
 
         <div
-          className="mt-6 text-black px-10 py-3 text-base lg:text-lg rounded-full cursor-pointer transition-transform transform hover:scale-110"
+          className="mt-6 text-black px-10 py-3 text-base lg:text-lg rounded-full cursor-pointer transition-transform transform hover:scale-110 mb-32"
           style={{
             background: "linear-gradient(0deg, #8BDBD8, #70C6F6)",
           }}
@@ -184,7 +186,7 @@ const WorkshopSlider = () => {
                   required
                 />
               </div>
-              <div className="flex justify-end">
+              <div className="flex justify-end ">
                 <button
                   type="button"
                   className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
@@ -201,8 +203,11 @@ const WorkshopSlider = () => {
               </div>
             </form>
           </div>
+  
         </div>
+
       )}
+      <Footer/>
     </div>
   );
 };

@@ -2,7 +2,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Display from '../componenets/eventdisplay';
-
+import Navbar from '../componenets/Navbar';
+import Footer from '../componenets/Footer';
 const Profile = () => {
   
   const user={
@@ -22,8 +23,8 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen">
-      {/* User Info Section */}
-      <div className="mt-12 participant_info font-inter flex flex-col text-white items-center justify-center">
+      <Navbar/>
+      <div className="mt-28 participant_info font-inter flex flex-col text-white items-center justify-center">
         <div className="relative flex items-center justify-center w-36 h-36 rounded-full bg-gradient-to-b from-[#1B7774] to-[#0E1F25]">
           <div className="w-32 h-32 rounded-full overflow-hidden my-3">
             <Image
@@ -41,10 +42,10 @@ const Profile = () => {
         <div className="points text-lg font-medium mb-12 text-white">Prody Points</div>
       </div>
 
-      {/* Event Display */}
+      
       <Display />
 
-      {/* More Events Section */}
+      
       <div className="flex px-6 pb-2 mt-12 justify-between w-full">
         <div className="text-white mt-7 mx-auto font-semibold pb-8 text-2xl">More Events</div>
       </div>
@@ -52,7 +53,7 @@ const Profile = () => {
       <Link href="/events">
         <div className="grid grid-cols-4 gap-20 bg-[##010101] p-4 w-full text-white">
           {events.map((event) => (
-            <div key={event.id} className="flex items-center mb-4 hover:scale-110 transition-all duration-300">
+            <div key={event.id} className="flex items-center hover:scale-110 transition-all duration-300 mb-32">
               <Image
                 src={event.img}
                 alt={event.text}
@@ -67,13 +68,14 @@ const Profile = () => {
                 height={500}
                 className="w-[10vw] relative"
               />
-              <div className="absolute translate-x-20 -translate-y-2 px-7">
+              <div className="flex absolute translate-x-32">
                 {event.text}
               </div>
             </div>
           ))}
         </div>
       </Link>
+      <Footer/>
     </div>
   );
 };

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+
 
 const images = [
   "/images/1.jpeg",
@@ -11,6 +11,10 @@ const images = [
 ];
 
 const Workshop = () => {
+
+  const navigateToWorkshop = () => {
+    window.location.href = "/workshop"; 
+  };
   const [hovered, setHovered] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -24,9 +28,10 @@ const Workshop = () => {
   }, []);
 
   return (
-    <Link href="/workshop" passHref>
-    <div className="w-[50vw] h-[75vh] flex flex-col items-center justify-center gap-4">
-      {/* Image Card */}
+    
+    <div className="w-[50vw] h-[75vh] flex flex-col items-center justify-center gap-4
+    " onClick={navigateToWorkshop}>
+
       <motion.div
         className="h-[50vh] w-[20vw] relative overflow-hidden rounded-2xl shadow-lg cursor-pointer border-2 border-[#00a3a3]"
         initial={{ scale: 1 }}
@@ -74,7 +79,7 @@ const Workshop = () => {
         Improve your skills by participating in exciting workshop!!
       </div>
     </div>
-    </Link>
+  
   );
 };
 

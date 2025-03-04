@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion"; 
+import Navbar from "../componenets/Navbar";
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -26,9 +26,9 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col pt-5 items-center lg:pt-12 relative">
-      <div className="flex items-center justify-between w-[90%] max-w-[400px] sm:mb-12 mb-6">
+      <Navbar/>
+      <div className="flex items-center justify-center w-[90%] max-w-[400px] sm:mb-12 mt-16 mb-6">
         <h2 className="text-white text-4xl sm:text-4xl font-black">Login</h2>
-        <Image src="/images/logo.png" alt="Logo" width={60} height={50} />
       </div>
 
       
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
           <div key={index} className="w-full max-w-[350px] mb-11 sm:mb-9">
             <label
               htmlFor={field}
-              className="block text-[#B0B0B0] font-semibold sm:font-bold text-lg sm:text-xl mb-2"
+              className="block text-[#474747] font-semibold sm:font-bold text-lg sm:text-xl mb-2"
             >
               {field === "name"
                 ? "Username" 
@@ -75,11 +75,12 @@ const LoginPage: React.FC = () => {
 
         <div className="mt-6 text-white text-base">
           Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-[#1B7774] font-semibold hover:underline">
+          <a href="/signup" className="text-[#0c4644] font-semibold hover:underline">
             Sign Up
           </a>
         </div>
       </motion.div>
+
     </div>
   );
 };

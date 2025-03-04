@@ -1,15 +1,15 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation"; 
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Home from "./componenets/Home";
 import Members from "./componenets/Members";
 import Register from "./componenets/Profile";
 import Events from "./componenets/Events";
-import Gallery from "./componenets/Workshop"
+import Gallery from "./componenets/Workshop";
 import Messages from "./componenets/Messages";
 import Timeline from "./componenets/Timeline";
-
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -19,6 +19,14 @@ const MouseScrollGrids = () => {
   const targetX = useRef(0);
   const targetY = useRef(0);
   const gridRef = useRef(null);
+  const pathname = usePathname(); 
+
+  // Use `useLayoutEffect` to reset scroll **before** rendering
+  useLayoutEffect(() => {
+    console.log("Resetting Scroll Position on Route Change:", pathname);
+    window.scrollTo(0, 0); // Native scroll reset
+    gsap.to(window, { duration: 0, scrollTo: { x: 0, y: 0 } }); // GSAP scroll reset
+  }, [pathname]);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -55,9 +63,7 @@ const MouseScrollGrids = () => {
   }, []);
 
   useEffect(() => {
-
     const timeline = gsap.timeline();
-
 
     timeline.fromTo(
       gridRef.current,
@@ -72,15 +78,14 @@ const MouseScrollGrids = () => {
       }
     );
 
-
     timeline.to(
       gridRef.current,
       {
-        scale: 1,   
-        x: "0%",   
-        y: "0%",    
-        duration: 2,  
-        ease: "power2.inOut",  
+        scale: 1,
+        x: "0%",
+        y: "0%",
+        duration: 2,
+        ease: "power2.inOut",
       },
       "+=0.5"
     );
@@ -99,8 +104,7 @@ const MouseScrollGrids = () => {
         gap: "5px",
       }}
     >
- 
-    <Members />
+      <Members />
       <Home />
       <Events />
       <Register />

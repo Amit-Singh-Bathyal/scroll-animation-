@@ -9,6 +9,10 @@ export default function Home() {
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
+    const navigateToSignup = () => {
+      window.location.href = "/signup"; 
+    };
+
   useEffect(() => {
     const texts = ["REALMS OF ENGINEERING", "WHERE ENGINEERING MEETS INNOVATION"]; 
     const currentText = texts[textIndex];
@@ -51,8 +55,8 @@ export default function Home() {
           Register now for exciting events !!
         </div>
 
-        <div className="relative -translate-x-7 hover:bg-slate-500 w-52 h-52 flex items-center justify-center rounded-full border-4 border-teal-400 p-2 text-white text-3xl font-bold shadow-lg text-center">
-          <a href="/signup">Sign Up</a>
+        <div className="relative -translate-x-7 hover:bg-slate-500 w-52 h-52 flex items-center justify-center rounded-full border-4 border-teal-400 p-2 text-white text-3xl font-bold shadow-lg text-center" onClick={navigateToSignup}>
+       Sign Up
         </div>
       </div>
 

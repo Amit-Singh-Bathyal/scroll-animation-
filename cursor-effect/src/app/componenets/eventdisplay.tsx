@@ -8,7 +8,7 @@ const events = [
   {
     name: "Breach-o-Beach",
     date: "4th April",
-    description: "Description for Breach-O Beach Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    description: "Description for Breach-O Beach Lorem ipsum dolor sit amet consectetur, adipisicing elit.wdqdw dfwed ewrd ewwerde wwerw rw we rwrewrewr werwe fdcwd s wedf wwdc",
   },
   {
     name: "Chemystrey 2.O",
@@ -43,9 +43,9 @@ const Display = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentEventIndex((prevIndex) => (prevIndex + 1) % events.length);
-    }, 5000); // Change event every 5 seconds
+    }, 5000); 
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    return () => clearInterval(interval); 
   }, []);
 
   const handlers = useSwipeable({
@@ -69,7 +69,7 @@ const Display = () => {
               alt="frame"
               width={282}
               height={200}
-              className="w-[400px]" 
+              className="w-[25vw]" 
             />
             <div className="absolute top-2 left-2 z-1 flex items-start space-x-1">
               <div className="bg-[#D25E5E] ml-7 mt-4 w-[0.2vw] overflow-hidden h-[10vw]"></div>
@@ -80,7 +80,7 @@ const Display = () => {
             </div>
             <div className="absolute top-20 w-[15vw] h-[0.25vh] bg-[#474747] ml-12"></div>
             <div className="absolute top-24 flex justify-between items-center w-full px-4">
-              <div className="text-lg w-[20vw] ml-9 text-white text-wrap">
+              <div className="text-lg w-[20vw] ml-9  text-white text-wrap">
                 {event.description}
               </div>
             </div>
