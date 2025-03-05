@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const navItems = [
-  { name: "Home", path: "/" },
+  { name: "Home", path: "/home" },
   { name: "Events", path: "/events" },
   { name: "Workshop", path: "/workshop" },
   { name: "Members", path: "/members" },

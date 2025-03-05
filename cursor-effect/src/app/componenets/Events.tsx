@@ -44,7 +44,7 @@ export default function Events() {
               alt={events[index].title}
               width={640}
               height={480} 
-              className="rounded-2xl object-cover w-full h-full"
+              className="rounded-2xl object-cover cursor-pointer w-full h-full"
             />
           </motion.div>
         </AnimatePresence>

@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
 
       {/* Login Box */}
       <motion.div
-        className="p-6 mx-2 sm:border-[3px] bg-opacity-20 bg-slate-200 border-[#1B7774] w-[90%] max-w-[500px] lg:max-w-[600px] rounded-3xl h-auto flex flex-col justify-center items-center"
+        className="p-6 mx-2 sm:border-[3px] bg-opacity-20 bg-slate-200 border-[#1B7774] w-[90%] max-w-[500px] lg:max-w-[460px] rounded-3xl h-auto flex flex-col justify-center items-center"
         variants={cardVariants}
         initial="hidden"
         animate="visible"
@@ -43,7 +43,7 @@ const LoginPage: React.FC = () => {
           <div key={index} className="w-full max-w-[450px] mb-11 sm:mb-9">
             <label
               htmlFor={field}
-              className="block text-[#474747] font-semibold sm:font-bold text-lg sm:text-xl mb-2"
+              className="block text-white font-semibold sm:font-bold text-lg sm:text-xl mb-2"
             >
               {field === "name"
                 ? "Username" 
@@ -78,7 +78,7 @@ const LoginPage: React.FC = () => {
         {/* Sign Up Link */}
         <div className="mt-6 text-white text-lg">
           Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-[#0c4644] font-semibold hover:underline">
+          <a href="/signup" className="text-white font-semibold hover:underline">
             Sign Up
           </a>
         </div>

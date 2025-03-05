@@ -279,7 +279,7 @@ const ThreeScene: React.FC = () => {
 
     label.addEventListener('click', (event) => {
       event.stopPropagation();
-      window.location.href = 'demo.html';
+      window.location.href = '/register';
     });
   };
 

@@ -16,7 +16,6 @@ const Workshop = () => {
 
   const [index, setIndex] = useState(0);
 
-  // Auto change image every 2 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % images.length);

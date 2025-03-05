@@ -70,3 +70,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/domaine-font-family-1741154365-0/TestDomaineDisplay-Black-BF66174a2210ef8.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

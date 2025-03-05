@@ -14,7 +14,7 @@ export default function Countdown() {
       return;
     }
 
-    if (count < 10) {
+    if (count < 12) {
       const timer = setTimeout(() => {
         setCount(count + 1);
       }, 50); // Adjust speed (200ms per count)
@@ -26,8 +26,8 @@ export default function Countdown() {
   }, [count, isPaused]);
 
   return (
-    <div className="flex items-center justify-center h-[20vh] ml-8 bg-transparent m-2">
-      <div className="hover:scale-105 hover:cursor-pointer relative w-36 h-36 flex items-center justify-center rounded-full border-4 border-teal-400 text-white text-5xl font-bold shadow-lg">
+    <div className="flex items-center justify-center ml-16 mt-4 bg-transparent  border-2 w-28  h-12 rounded-[4px] border-white ">
+      <div className="hover:scale-105 hover:cursor-pointer relative flex items-center justify-center  text-white text-4xl font-bold shadow-lg">
         {count}
       </div>
     </div>

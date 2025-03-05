@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Register: React.FC = () => {
+    const [hovered, setHovered] = useState(false);
   const navigateToProfile = () => {
     window.location.href = "/profile"; 
   };
@@ -10,23 +12,29 @@ const Register: React.FC = () => {
     <div className="w-[60vw] h-[75vh] flex flex-row mt-20 items-center justify-center gap-4"
     onClick={navigateToProfile}>
   {/* Image Card */}
-  <motion.div
-    className="h-[65vh] w-[23vw] relative overflow-hidden rounded-2xl shadow-lg cursor-pointer "
-    initial={{ scale: 1 }}
-    whileHover={{ scale: 1.05 }}
-    transition={{ duration: 0.3, ease: "easeOut" }}
+      <motion.div
+        className="h-[65vh] w-[23vw] relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Image */}
+        <Image
+          src="/images/profilef.jpeg"
+          alt="Team"
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-300 ease-out"
+        />
 
-  >
-    {/* Image */}
-    <Image
-      src="/images/profilef.jpeg"
-      alt="Team"
-      layout="fill"
-      objectFit="cover"
-      className="transition-transform duration-300 ease-out"
-    />
-
-  </motion.div>
+        {/* Overlay Text (Example of using hovered state) */}
+        {hovered && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl font-bold">
+          </div>
+        )}
+      </motion.div>
 
   {/* Text Below Image */}
 

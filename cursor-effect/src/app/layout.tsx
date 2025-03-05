@@ -14,7 +14,7 @@ export default function RootLayout({
         }}
       >
         <div
-          className="fixed inset-0 bg-white/10 backdrop-blur-md"
+          className="fixed inset-0 bg-black/30 backdrop-blur-md"
           style={{
             WebkitBackdropFilter: "blur(10px)",
           }}

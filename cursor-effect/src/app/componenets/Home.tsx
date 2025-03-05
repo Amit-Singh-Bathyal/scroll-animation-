@@ -53,17 +53,17 @@ export default function Home() {
   }, [charIndex, isDeleting, textIndex]); 
   return (
     <div className="relative flex justify-center  text-white text-2xl font-bold w-[100vw] h-[150vh]" style={{ gridRow: "span 2" }}>
-      <div className="absolute top-56 left-60 flex flex-col items-start">
-        <div className="text-2xl font-semibold mb-2 text-center">Total Events</div>
+      <div className="absolute top-56 left-56 flex flex-col items-start">
+        <div className="text-2xl border-2 border-white w-60 h-16 pt-3 rounded-2xl text-center">Total Events</div>
         <Countdown />
       </div>
-      <div className="absolute top-72 right-24 flex items-end">
-        <div className="relative w-44 h-44 flex items-center justify-center rounded-full border-4 border-teal-400 p-2 text-white text-[20px] font-bold shadow-lg text-center">
-          Register now for exciting events !!
+      <div className=" flex items-end">
+        <div className="absolute top-44 right-40 h-24 w-72 flex items-center justify-center rounded-2xl border-2 border-white p-2 text-white text-[20px] font-bold shadow-lg text-center">
+          REGISTER NOW FOR EXISTING EVENTS !!
         </div>
 
-        <div className="relative -translate-x-7 hover:bg-transparent w-44 h-44 flex items-center justify-center rounded-full border-4 border-teal-400 p-2 text-white text-2xl font-bold shadow-lg text-center">
-          <a href="/signup">Sign Up</a>
+        <div className=" absolute top-80 right-20 -translate-x-7 hover:bg-transparent w-56 h-16 flex items-center justify-center rounded-2xl border-[1px] border-white p-2 text-white text-[24px]  shadow-lg text-center">
+          <a href="/signup">SIGN UP</a>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
           width={800}
           height={400}
         />
-        <div className="m-2 text-bold text-7xl">PRODYOGIKI</div>
+        <div className="m-2 text-bold font- text-7xl">PRODYOGIKI</div>
         <div className="m-2">{displayedText}<span className="animate-blink">|</span></div>
 
         <div className="grid grid-cols-4 grid-rows-1 gap-8 p-8 mt-8 bg-black">
