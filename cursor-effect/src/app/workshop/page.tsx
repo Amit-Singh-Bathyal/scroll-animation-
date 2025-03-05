@@ -149,7 +149,7 @@ const WorkshopSlider = () => {
                   Select Workshop
                 </label>
                 <select
-                  className="w-full p-2 rounded  text-white"
+                  className="w-full p-2 rounded  text-black"
                   value={selectedWorkshop}
                   onChange={(e) => setSelectedWorkshop(e.target.value)}
                 >
@@ -161,12 +161,12 @@ const WorkshopSlider = () => {
                 </select>
               </div>
               <div className="mb-4">
-                <label className="block text-white text-sm font-bold mb-2">
+                <label className="block text-black text-sm font-bold mb-2">
                   Name
                 </label>
                 <input
                   type="text"
-                  className="w-full p-2 rounded text-white"
+                  className="w-full p-2 rounded text-black"
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -179,7 +179,7 @@ const WorkshopSlider = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full p-2 rounded  text-white"
+                  className="w-full p-2 rounded  text-black"
                   placeholder="Enter your roll number"
                   value={rollNo}
                   onChange={(e) => setRollNo(e.target.value)}

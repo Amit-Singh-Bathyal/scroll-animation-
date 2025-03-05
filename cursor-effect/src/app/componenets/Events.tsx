@@ -9,6 +9,10 @@ const events = [
 ];
 
 export default function Events() {
+  const navigateToEvents = () => {
+    window.location.href = "/events";
+  };
+
   const [index, setIndex] = useState(0);
 
   // Auto change every 5 seconds
@@ -23,7 +27,7 @@ export default function Events() {
   const prevSlide = () => setIndex((prev) => (prev - 1 + events.length) % events.length);
 
   return (
-    <div className="h-[60vw] mt-0 flex flex-col items-center justify-center space-y-4 p-4">
+    <div className="h-[60vw] mt-0 flex flex-col items-center justify-center space-y-4 p-4"onClick={navigateToEvents}>
       {/* Carousel Window */}
       <div className="relative w-[25vw] h-[60vh] overflow-hidden rounded-2xl shadow-lg flex items-center justify-center">
         <AnimatePresence>
