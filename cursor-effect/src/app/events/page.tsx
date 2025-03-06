@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div className='bg-black'>
 <Navbar/>
-<div className='bg-red-700'>
+<div className='bg-red-700 mt-8 '>
   <ThreeScene/>
 </div>
 </div>  )

@@ -13,7 +13,7 @@ const Members = () => {
 
   return (
     <div
-      className="w-[60vw] h-[75vh] flex flex-row mt-12 items-center justify-center gap-4"
+      className="w-[60vw] h-[75vh] flex flex-row mt-20 ml-20 items-center justify-center gap-4"
       onClick={navigateToMembers}
     >
       {/* Image Card */}

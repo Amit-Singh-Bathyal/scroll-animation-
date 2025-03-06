@@ -22,7 +22,7 @@ const Messages = () => {
   }, []);
 
   return (
-    <div className="relative w-[40vw] h-[30vh] mt-20 flex items-center justify-center">
+    <div className="relative w-[40vw] h-[30vh] mt-20 ml-20 flex items-center justify-center">
       <AnimatePresence mode="popLayout">
         {quotes.map((quote, i) =>
           i === index ? (
@@ -35,8 +35,7 @@ const Messages = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <p className="text-2xl">&quot;{quote.text}&quot;</p>
-              <p className="mt-2 text-lg font-medium text-gray-300">—{quote.person}</p>
-              <p className="mt-2 text-lg font-medium text-gray-300">{quote.designation}</p>
+
             </motion.div>
           ) : null
         )}

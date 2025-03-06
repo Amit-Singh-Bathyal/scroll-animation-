@@ -28,7 +28,7 @@ const Footer = () => {
       <div className="flex justify-center w-[100vw] items-center py-3  ">
         
         
-        <div className="flex items-center justify-center w-[90px]">
+        <div className="flex items-center justify-center ">
           <Image
             src="/iste.webp"
             alt="ISTE Logo"
@@ -36,6 +36,7 @@ const Footer = () => {
             height={100}
             className="cursor-pointer"
           />
+          <div className="text-2xl -mt-5">ISTE NITH</div>
         </div>
 
         <div className="flex items-center pl-40 justify-center mb-4 space-x-6">

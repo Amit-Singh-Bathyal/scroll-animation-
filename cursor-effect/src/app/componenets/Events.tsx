@@ -23,11 +23,9 @@ export default function Events() {
     return () => clearInterval(interval);
   }, []);
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % events.length);
-  const prevSlide = () => setIndex((prev) => (prev - 1 + events.length) % events.length);
 
   return (
-    <div className="h-[60vw] mt-0 flex flex-col items-center justify-center space-y-4 p-4"onClick={navigateToEvents}>
+    <div className="h-[60vw] mt-12 ml-12 flex flex-col items-center justify-center space-y-4 p-4"onClick={navigateToEvents}>
       {/* Carousel Window */}
       <div className="relative w-[25vw] h-[60vh] overflow-hidden rounded-2xl shadow-lg flex items-center justify-center">
         <AnimatePresence>
@@ -50,23 +48,11 @@ export default function Events() {
         </AnimatePresence>
       </div>
 
-      {/* Left & Right Buttons */}
-      <div className="flex space-x-4">
-        <button onClick={prevSlide} className="px-4 py-2 bg-[#00a3a3] text-white rounded-lg shadow-lg hover:bg-[#008080]">
-          ◀ Prev
-        </button>
-        <button onClick={nextSlide} className="px-4 py-2 bg-[#00a3a3] text-white rounded-lg shadow-lg hover:bg-[#008080]">
-          Next ▶
-        </button>
-      </div>
 
-      {/* Register Button */}
-      <button className="mt-4 px-6 py-3  text-white border-2  font-bold rounded-lg shadow-lg hover:bg-transparent">
-        Register Now
-      </button>
+<div className="text-4xl pt-8 text-white">EXPLORE EVENTS</div>
 
       {/* Text Section */}
-      <div className="mt-4 text-white text-left px-4 w-[30vw] text-xl">
+      <div className="pt-4 text-white text-left px-4 w-[28vw] text-xl">
         <p>
           Join us for an exciting series of events! Participate, learn, and showcase your skills. Register now and be a
           part of something amazing.

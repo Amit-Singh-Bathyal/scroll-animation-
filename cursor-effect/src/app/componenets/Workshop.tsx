@@ -26,7 +26,7 @@ const Workshop = () => {
 
   return (
     <div
-      className="w-[50vw] h-[75vh] mt-80 flex flex-col items-center justify-center gap-4"
+      className="w-[50vw] h-[75vh] mt-96 ml-8 flex flex-col items-center justify-center gap-4"
       onClick={navigateToWorkshop}
     >
       {/* Image Card */}

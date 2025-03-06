@@ -52,7 +52,7 @@ export default function Home() {
     }
   }, [charIndex, isDeleting, textIndex]); 
   return (
-    <div className="relative flex justify-center  text-white text-2xl font-bold w-[100vw] h-[150vh]" style={{ gridRow: "span 2" }}>
+    <div className="relative flex justify-center  text-white text-2xl ml-16 mt-10 font-bold w-[100vw] h-[150vh]" style={{ gridRow: "span 2" }}>
       <div className="absolute top-56 left-56 flex flex-col items-start">
         <div className="text-2xl border-2 border-white w-60 h-16 pt-3 rounded-2xl text-center">Total Events</div>
         <Countdown />

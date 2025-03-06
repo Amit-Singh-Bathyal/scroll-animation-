@@ -1,6 +1,6 @@
 "use client";
-import { useLayoutEffect, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation"; 
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Home from "../componenets/Home";
@@ -19,13 +19,14 @@ const MouseScrollGrids = () => {
   const targetX = useRef(0);
   const targetY = useRef(0);
   const gridRef = useRef(null);
-  const pathname = usePathname(); 
+  const pathname = usePathname();
+  const [isScaled, setIsScaled] = useState(false); 
 
-  // Use `useLayoutEffect` to reset scroll **before** rendering
+
   useLayoutEffect(() => {
     console.log("Resetting Scroll Position on Route Change:", pathname);
-    window.scrollTo(0, 0); // Native scroll reset
-    gsap.to(window, { duration: 0, scrollTo: { x: 0, y: 0 } }); // GSAP scroll reset
+    window.scrollTo(0, 0); 
+    gsap.to(window, { duration: 0, scrollTo: { x: 0, y: 0 } }); 
   }, [pathname]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const MouseScrollGrids = () => {
         scrollTo: {
           x: targetX.current * scrollWidth,
           y: targetY.current * scrollHeight,
-          autoKill: false, 
+          autoKill: false,
         },
       });
 
@@ -67,10 +68,10 @@ const MouseScrollGrids = () => {
 
     timeline.fromTo(
       gridRef.current,
-      { scale: 0.5, x: "-25%", y: "-25%" },
+      { scale: 0.5, x: "0", y: "0" },
       {
         scale: 1,
-        x: "-25%",
+        x: "-28%",
         y: "0%",
         duration: 2,
         delay: 1,
@@ -91,19 +92,53 @@ const MouseScrollGrids = () => {
     );
   }, []);
 
+
+  const toggleScale = () => {
+    if (isScaled) {
+      // Scale up to 1
+      gsap.to(gridRef.current, {
+        scale: 1,
+        duration: 1.5,
+        x: "0%",
+        y: "0%",
+        ease: "power2.out",
+      });
+    } else {
+
+      gsap.to(gridRef.current, {
+        scale: 0.5,
+        duration: 1.5,
+        ease: "power2.out",
+      });
+    }
+    setIsScaled(!isScaled); 
+  };
+
   return (
+    <>
+
+<button
+        onClick={toggleScale}
+        className="fixed right-[46%] top-[1%] z-50 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transition-all"
+      >
+        {isScaled ? "Scale Up" : "Scale Down"}
+      </button>
+
     <div
       ref={gridRef}
-      className="grid md:grid-cols-3 md:grid-rows-3 grid-cols-1 grid-rows-1 overflow-hidden bg-black"
+      className="grid md:grid-cols-3 md:grid-rows-3 grid-cols-1 grid-rows-1 overflow-hidden bg-black transform origin-top-left"
       style={{
-        width: "200vw",
-        height: "200vh",
+        width: "210vw",
+        height: "230vh",
         display: "grid",
-        gridTemplateColumns: "50vw  100vw 50vw ",
-        gridTemplateRows: "75vh  75vh  75vh",
+        gridTemplateColumns: "50vw  100vw 50vw",
+        gridTemplateRows: "80vh  80vh  80vh",
         gap: "5px",
       }}
     >
+
+
+
       <Members />
       <Home />
       <Events />
@@ -113,6 +148,8 @@ const MouseScrollGrids = () => {
       <Timeline />
       <div className="w-[50vw] h-[50vh]">example</div>
     </div>
+
+    </>
   );
 };
 

@@ -85,9 +85,9 @@ const WorkshopSlider = () => {
           {cards.map((card) => (
             <div
               key={card.id}
-              className="flex-shrink-0 w-[351px] h-[438px] lg:w-[500px] lg:h-[600px] p-[2px] rounded-[22px] border-[3px] border-sky-300 "
+              className="flex-shrink-0 w-[351px] h-[438px] lg:w-[500px] lg:h-[600px] p-[2px] rounded-[22px] border-[3px] border-teal-500 "
               style={{
-                background: "linear-gradient(45deg, #2A2E2E, #466262)",
+                background: "",
               }}
             >
               <div className="flex flex-col items-center rounded-[22px] w-full h-full p-4 ">

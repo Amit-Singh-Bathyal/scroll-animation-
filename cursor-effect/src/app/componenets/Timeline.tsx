@@ -42,9 +42,29 @@ export default function HorizontalTimeline() {
   }, []);
 
   return (
-    <div className="w-[80%] h-[50vh] mx-auto -mt-20 flex flex-col items-center justify-center bg-black text-white">
-      {/* Timeline Line */}
-      <div className="relative w-[80%] h-1 bg-gray-700 mb-4">
+    <div className="w-[80%] h-[50vh] ml-48 -mt-20 flex flex-col items-center justify-center bg-gradient-to-r from-black via-teal-900 to-black text-white">
+
+
+<button className="mt-4 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transition-all">
+        Explore Timeline
+      </button>
+
+      <motion.div
+        key={selected}
+        className="w-[80%] mt-10 p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="text-2xl font-bold mb-2 text-teal-500">{content[selected].title}</h2>
+        <p className="text-gray-300 mb-4">{content[selected].description}</p>
+        <p className="text-sm text-gray-400">{content[selected].time}</p>
+      </motion.div>
+
+      {/* Explore Button */}
+
+      <div className="relative w-[80%] h-1 mt-8 bg-gray-700 mb-4">
         <motion.div
           className="absolute top-0 left-0 h-1 bg-teal-500"
           initial={{ width: '0%' }}
@@ -52,9 +72,7 @@ export default function HorizontalTimeline() {
           transition={{ duration: 0.5 }}
         />
       </div>
-
-      {/* Timeline Nodes */}
-      <div ref={timelineRef} className="relative w-[80%] flex justify-between">
+      <div ref={timelineRef} className="relative  w-[80%] flex justify-between">
         {days.map((day, index) => (
           <div key={index} className="relative flex flex-col items-center timeline-node">
             {/* Node Circle */}
@@ -74,25 +92,6 @@ export default function HorizontalTimeline() {
           </div>
         ))}
       </div>
-
-      {/* Event Details */}
-      <motion.div
-        key={selected}
-        className="w-[80%] mt-10 p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-2xl font-bold mb-2 text-teal-500">{content[selected].title}</h2>
-        <p className="text-gray-300 mb-4">{content[selected].description}</p>
-        <p className="text-sm text-gray-400">{content[selected].time}</p>
-      </motion.div>
-
-      {/* Explore Button */}
-      <button className="mt-8 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transition-all">
-        Explore Timeline
-      </button>
     </div>
   );
 }

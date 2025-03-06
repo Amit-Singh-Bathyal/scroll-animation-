@@ -13,18 +13,27 @@ const EventRegister: React.FC<RegisterModalProps> = ({ eventName, onClose }) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     console.log("Prody ID:", prodyId);
     console.log("Team ID:", teamId);
-    onClose(); 
+    onClose(); // Close the modal after submission
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      
-      <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm" />
+    <div
+      className="fixed inset-0 flex items-center justify-center z-50 min-h-screen bg-fixed bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/background.webp')", // Background image
+      }}
+    >
+      {/* Background Blur Overlay */}
+      <div
+        className="fixed inset-0 bg-black/30 backdrop-blur-md"
+        style={{
+          WebkitBackdropFilter: "blur(10px)",
+        }}
+      ></div>
 
-      
+      {/* Modal Content */}
       <motion.div
         className="bg-black border-2 border-teal-600 rounded-[30px] w-[90%] max-w-[400px] p-6 relative z-50"
         initial={{ opacity: 0, scale: 0.8 }}

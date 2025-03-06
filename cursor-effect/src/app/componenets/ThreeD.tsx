@@ -4,42 +4,48 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import gsap from 'gsap';
+import { events } from '../../../public/data/event';
 import './styles.css'; // Import your CSS file
+
+// Define the type for Vanta effect
+type VantaEffect = {
+  destroy: () => void;
+};
 
 const ThreeScene: React.FC = () => {
   const mountRef = React.useRef<HTMLDivElement>(null);
-  const [vantaEffect, setVantaEffect] = React.useState<any>(null);
+  const [vantaEffect, setVantaEffect] = React.useState<VantaEffect | null>(null);
 
   let camera: THREE.PerspectiveCamera,
     scene: THREE.Scene,
     renderer: THREE.WebGLRenderer,
     controls: OrbitControls;
   const islandObjects: { object: THREE.Object3D; position: THREE.Vector3 }[] = [];
-  let labels: { label: HTMLDivElement; island: THREE.Object3D }[] = [];
+  const labelsRef = React.useRef<{ label: HTMLDivElement; island: THREE.Object3D }[]>([]);
   const pins: THREE.Mesh[] = [];
 
   React.useEffect(() => {
     // Initialize Three.js scene
     init();
+
     // Set up Vanta.js effect
-    setVantaEffect(
-      window.VANTA?.CLOUDS2({
-        el: ".s-page-1 .s-section-1 .s-section",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.0,
-        minWidth: 200.0,
-        scale: 1.0,
-        texturePath: "./texture.png",
-      })
-    );
-  
+    const effect = window.VANTA?.CLOUDS2({
+      el: ".s-page-1 .s-section-1 .s-section",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1.0,
+      texturePath: "./texture.png",
+    });
+    setVantaEffect(effect as VantaEffect); // Cast to VantaEffect type
+
     // Cleanup on unmount
     return () => {
       // Destroy Vanta.js effect
       if (vantaEffect) vantaEffect.destroy();
-  
+
       // Dispose of Three.js renderer and scene resources
       if (renderer) {
         renderer.dispose();
@@ -52,17 +58,15 @@ const ThreeScene: React.FC = () => {
           }
         });
       }
-  
+
       // Remove all text labels from the DOM
-      labels.forEach(({ label }) => {
+      labelsRef.current.forEach(({ label }) => {
         if (label && document.body.contains(label)) {
           document.body.removeChild(label);
         }
       });
-  
-      // Clear the labels array
-      labels = [];
-  
+      labelsRef.current = [];
+
       // Remove event listeners
       window.removeEventListener('resize', resize);
       window.removeEventListener('click', onClick);
@@ -88,7 +92,7 @@ const ThreeScene: React.FC = () => {
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(5, 10, 5).normalize();
     scene.add(directionalLight);
-    
+
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -185,20 +189,7 @@ const ThreeScene: React.FC = () => {
             { x: -240, y: 80, z: -150 },
           ];
 
-          const eventNames = [
-            'Abhedya 4.0',
-            'Codequest Chronicle 2.0',
-            'Monopoly',
-            'CyberSiege',
-            'AeroQuest Glider',
-            'Chemystery 2.0',
-            'FilteRaid',
-            'Ohm Alone',
-            'Torque Dash',
-            'Triumph Cards',
-            'Breach-o-beach',
-            'Game on',
-          ];
+          const event = events[i];
 
           const fixedScale = 110;
 
@@ -217,9 +208,8 @@ const ThreeScene: React.FC = () => {
           scene.add(island);
           islandObjects.push({ object: island, position: new THREE.Vector3(pos.x, pos.y, pos.z) });
 
-          addPinOnIsland(island, pos);
-          const eventName = eventNames[i];
-          addTextLabel(island, eventName, pos);
+          addPinOnIsland(island, );
+          addTextLabel(island, event.name);
         },
         undefined,
         (error) => {
@@ -229,8 +219,8 @@ const ThreeScene: React.FC = () => {
     });
   };
 
-  const addPinOnIsland = (island: THREE.Object3D, position: { x: number; y: number; z: number }) => {
-    const pinHeight = 15;
+  const addPinOnIsland = (island: THREE.Object3D) => {
+    const pinHeight = 20;
     const pinRadius = 5;
 
     const pinGeometry = new THREE.ConeGeometry(pinRadius, pinHeight, 32);
@@ -250,7 +240,7 @@ const ThreeScene: React.FC = () => {
     pins.push(pin);
   };
 
-  const addTextLabel = (island: THREE.Object3D, text: string, position: { x: number; y: number; z: number }) => {
+  const addTextLabel = (island: THREE.Object3D, text: string, ) => {
     const islandBoundingBox = new THREE.Box3().setFromObject(island);
     const centerX = islandBoundingBox.getCenter(new THREE.Vector3()).x;
     const centerY = islandBoundingBox.max.y;
@@ -273,13 +263,16 @@ const ThreeScene: React.FC = () => {
     label.style.zIndex = '10';
 
     document.body.appendChild(label);
-    labels.push({ label, island });
+    labelsRef.current.push({ label, island });
 
     updateLabelPosition(label, new THREE.Vector3(centerX, centerY, centerZ));
 
     label.addEventListener('click', (event) => {
       event.stopPropagation();
-      window.location.href = '/register';
+      const eventData = events.find((e) => e.name === text);
+      if (eventData) {
+        window.location.href = eventData.Link;
+      }
     });
   };
 
@@ -307,7 +300,7 @@ const ThreeScene: React.FC = () => {
   const animate = () => {
     controls.update();
 
-    labels.forEach(({ label, island }) => {
+    labelsRef.current.forEach(({ label, island }) => {
       const islandBoundingBox = new THREE.Box3().setFromObject(island);
       const centerX = islandBoundingBox.getCenter(new THREE.Vector3()).x;
       const centerY = islandBoundingBox.max.y + 18;
@@ -378,15 +371,12 @@ const ThreeScene: React.FC = () => {
   };
 
   return (
-   
     <div className="s-page-1">
       <div className="s-section-1">
-        
         <div className="s-section" ref={mountRef}></div>
       </div>
       <div id="info"></div>
     </div>
-  
   );
 };
 

@@ -9,7 +9,7 @@ const Register: React.FC = () => {
     window.location.href = "/profile"; 
   };
   return (
-    <div className="w-[60vw] h-[75vh] flex flex-row mt-20 items-center justify-center gap-4"
+    <div className="w-[60vw] h-[75vh] flex flex-row mt-28 ml-20 items-center justify-center gap-4"
     onClick={navigateToProfile}>
   {/* Image Card */}
       <motion.div
