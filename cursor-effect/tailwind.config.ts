@@ -11,7 +11,7 @@ export default {
   	extend: {
 
 		fontFamily: {
-        custom: ['CustomFont'],
+        heading: ['heading'],
       },
   		colors: {
   			background: 'hsl(var(--background))',

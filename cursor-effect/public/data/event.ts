@@ -13,7 +13,7 @@ export const events: Event[] = [
   {
     id: 1,
     name: "Abhedya 4.0",
-    description: "Description for Abhedya 4.0.",
+    description: "Description for Abhedya 4.0. hsgdushbdcs csdhufsdcns csdijcsdnc sdkjcfoksnc sdcdsjcs csdijcnsd cksdhcsdncsdcosjcnolsjdiosjcdosnc sdijcoisdnc scsidjcnsld csdjcscns csidjc sdcoc sdjcnsd csdcsdjcns dcsdcisdous dcsdcosdncsudhusdcsjdhsdbsdhhshsduhdhwhdjdnsjhsdhffyrfbrcjdhc ssdjsnc sjcnsdjn",
     abstractLink: "https://example.com/abhedya-4-abstract",
     photoUrl: "/images/1.jpeg",
     abstractUrl: "https://example.com/abhedya-4-abstract.pdf",

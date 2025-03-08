@@ -55,7 +55,7 @@ const Profile = () => {
             )}
           </div>
         </div>
-        <div className="name text-2xl mt-2 font-semibold text-white">{user.name}</div>
+        <div className="name text-2xl mt-2  font-heading text-white">{user.name}</div>
         <div className="prodyid text-xl font-semibold py-4 text-white">Prody ID: {user.prodyId}</div>
         <div className="points text-2xl font-semibold text-white">{user.points}</div>
         <div className="points text-lg font-medium mb-12 text-white">Prody Points</div>
@@ -77,14 +77,14 @@ const Profile = () => {
                 alt={event.text}
                 width={64}
                 height={64}
-                className="rounded-full object-cover w-[5vw] translate-x-2"
+                className="rounded-full object-cover w-20 translate-x-2"
               />
               <Image
                 src="/Subtract.svg"
                 alt="Decoration"
                 width={500}
                 height={500}
-                className="w-[10vw] relative"
+                className="w-44 relative"
               />
               <div className="flex absolute translate-x-32">
                 {event.text}
