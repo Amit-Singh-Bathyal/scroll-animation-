@@ -10,14 +10,14 @@ export default function Countdown() {
       setTimeout(() => {
         setCount(0);
         setIsPaused(false);
-      }, 3000); // Hold at 10 for 3 seconds
+      }, 3000); 
       return;
     }
 
     if (count < 12) {
       const timer = setTimeout(() => {
         setCount(count + 1);
-      }, 50); // Adjust speed (200ms per count)
+      }, 50);
 
       return () => clearTimeout(timer);
     }

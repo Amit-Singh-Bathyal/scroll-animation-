@@ -15,7 +15,6 @@ export default function Events() {
 
   const [index, setIndex] = useState(0);
 
-  // Auto change every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % events.length);

@@ -85,7 +85,7 @@ const MouseScrollGrids = () => {
         scale: 1,
         x: "0%",
         y: "0%",
-        duration: 2,
+        duration: 3,
         ease: "power2.inOut",
       },
       "+=0.5"
@@ -95,7 +95,6 @@ const MouseScrollGrids = () => {
 
   const toggleScale = () => {
     if (isScaled) {
-      // Scale up to 1
       gsap.to(gridRef.current, {
         scale: 1,
         duration: 1.5,

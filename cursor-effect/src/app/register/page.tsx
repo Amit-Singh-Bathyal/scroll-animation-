@@ -1,6 +1,7 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 interface RegisterModalProps {
   eventName: string;
@@ -11,29 +12,38 @@ const EventRegister: React.FC<RegisterModalProps> = ({ eventName, onClose }) => 
   const [prodyId, setProdyId] = useState("");
   const [teamId, setTeamId] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Prody ID:", prodyId);
-    console.log("Team ID:", teamId);
-    onClose(); // Close the modal after submission
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/register-event/", 
+        {
+          user_id: prodyId,
+          team_id: teamId,
+        }
+      );
+
+      console.log("Registration successful:", response.data);
+      onClose(); 
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-50 min-h-screen bg-fixed bg-cover bg-center"
       style={{
-        backgroundImage: "url('/background.webp')", // Background image
+        backgroundImage: "url('/background.webp')",
       }}
     >
-      {/* Background Blur Overlay */}
       <div
         className="fixed inset-0 bg-black/30 backdrop-blur-md"
         style={{
           WebkitBackdropFilter: "blur(10px)",
         }}
       ></div>
-
-      {/* Modal Content */}
       <motion.div
         className="bg-black border-2 border-teal-600 rounded-[30px] w-[90%] max-w-[400px] p-6 relative z-50"
         initial={{ opacity: 0, scale: 0.8 }}

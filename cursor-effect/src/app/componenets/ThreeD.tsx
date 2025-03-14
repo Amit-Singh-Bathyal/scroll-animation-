@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import gsap from 'gsap';
 import { events } from '../../../public/data/event';
-import './styles.css'; // Import your CSS file
+import './styles.css'; 
 
 // Define the type for Vanta effect
 type VantaEffect = {
