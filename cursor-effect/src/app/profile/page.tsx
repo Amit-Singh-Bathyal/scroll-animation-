@@ -131,14 +131,14 @@ const Profile = () => {
                 alt={event.name}
                 width={64}
                 height={64}
-                className="rounded-full object-cover w-[5vw] translate-x-2"
+                className="rounded-full object-cover w-20 translate-x-2"
               />
               <Image
                 src="/Subtract.svg"
                 alt="Decoration"
                 width={500}
                 height={500}
-                className="w-[10vw] relative"
+                className="w-44 relative"
               />
               <div className="flex absolute translate-x-32">
                 {event.name}

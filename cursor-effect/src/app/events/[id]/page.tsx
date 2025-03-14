@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "../../componenets/Footer"; 
 
 interface Event {
   id: number;
@@ -27,6 +28,7 @@ const EventDetails = () => {
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
   const [teamId, setTeamId] = useState("");
   const [teamName, setTeamName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -109,6 +111,14 @@ const EventDetails = () => {
     return <div className="p-8 text-center text-white">Event not found!</div>;
   }
 
+  const handleRegisterClick = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
   return (
     <div
       className="min-h-screen bg-fixed bg-cover bg-center"
@@ -174,6 +184,8 @@ const EventDetails = () => {
             </div>
           </div>
         </div>
+        <div className='mb-12'></div>
+        <Footer/>
       </main>
 
       {/* Registration Modal */}
